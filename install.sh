@@ -35,25 +35,8 @@ else
 fi
 
 bash $SCRIPTS_DIR/countdown.sh
+bash $SCRIPTS_DIR/bootstrap.sh $PROJECT_ROOT
 
-echo -e "$color_cyan modifying pacman.conf... $color_reset"
-sudo mv /etc/pacman.conf /etc/pacman.conf.bak
-sudo cp $SYSCONFIG_DIR/pacman.conf /etc/pacman.conf
-
-echo -e "$color_cyan updating package list... $color_reset"
-
-sudo pacman -Sy > /dev/null
-
-echo -e "$color_cyan getting git... $color_reset"
-yes | sudo pacman -S git > /dev/null
-
-mkdir -p $PROJECT_ROOT/clones
-echo -e "$color_cyan installing yay aur helper... $color_reset"
-
-git clone https://aur.archlinux.org/yay-bin $PROJECT_ROOT/clones/yay > /dev/null
-cd $PROJECT_ROOT/clones/yay && makepkg -si
-
-
-echo -e "$color_cyan downloading essential packages, please check before continuing $color_reset"
-echo ""
-yay -S $(cat $PROJECT_ROOT/corepkgs.ls)
+echo -e "$color_cyan copying config files... $color_reset"
+mkdir -p /home/$(whoami)/.config/hypr
+cp $USERCONFIG_DIR/hyprland.conf /home/$(whoami)/.config/hypr/hyprland.conf

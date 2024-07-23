@@ -6,6 +6,7 @@ color_cyan='\033[1;36m'
 color_red='\033[1;31m'
 color_green='\033[1;32m'
 
+cursor_up='\e[1A\e[K'
 sleep 0.2
 echo -e "$color_green starting in 3$color_reset"
 sleep 0.2
