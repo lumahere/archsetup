@@ -39,13 +39,18 @@ sudo cp $SCRIPT_DIR/configs/pacman.conf /etc/pacman.conf
 
 echo -e "$color_cyan updating package list... $color_reset"
 
-sudo pacman -Sy
+sudo pacman -Sy > /dev/null
 
 echo -e "$color_cyan getting git... $color_reset"
-yes | sudo pacman -S git
+yes | sudo pacman -S git > /dev/null
 
 mkdir -p $SCRIPT_DIR/clones
 echo -e "$color_cyan installing yay aur helper... $color_reset"
 
-git clone https://aur.archlinux.org/yay-bin $SCRIPT_DIR/clones/yay
+git clone https://aur.archlinux.org/yay-bin $SCRIPT_DIR/clones/yay > /dev/null
 cd $SCRIPT_DIR/clones/yay && makepkg -si
+
+
+echo -e "$color_cyan downloading essential packages, please check before continuing $color_reset"
+echo ""
+yay -S $(cat $SCRIPT_DIR/corepkgs.ls)
