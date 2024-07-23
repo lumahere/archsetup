@@ -39,5 +39,13 @@ sudo cp $SCRIPT_DIR/configs/pacman.conf /etc/pacman.conf
 
 echo -e "$color_cyan updating package list... $color_reset"
 
-
 sudo pacman -Sy
+
+echo -e "$color_cyan getting git... $color_reset"
+yes | sudo pacman -S git
+
+mkdir -p $SCRIPT_DIR/clones
+echo -e "$color_cyan installing yay aur helper... $color_reset"
+
+git clone https://aur.archlinux.org/yay-bin $SCRIPT_DIR/clones/yay
+cd $SCRIPT_DIR/clones/yay && makepkg -si
