@@ -36,7 +36,5 @@ fi
 
 bash $SCRIPTS_DIR/countdown.sh
 bash $SCRIPTS_DIR/bootstrap.sh $PROJECT_ROOT
+bash $SCRIPTS_DIR/restore.sh 
 
-echo -e "$color_cyan copying config files... $color_reset"
-mkdir -p /home/$(whoami)/.config/hypr
-cp $USERCONFIG_DIR/hyprland.conf /home/$(whoami)/.config/hypr/hyprland.conf
